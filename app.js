@@ -3,24 +3,14 @@ var hour = today.getHours();
 var minute = today.getMinutes();
 var second = today.getSeconds();
 
-/* function setTime(){
- 
 
-  document.getElementById("time").innerHTML = ;
-  
-} */
-
-/* function display_setTime(){
-
-  var refresh=1000;
-  mytime= setTimeout('setTime()', refresh);
-} */
-
-function setGreetings(){
+function setTime(){
+  const today = new Date();
+var hour = today.getHours();
+var minute = today.getMinutes();
+var second = today.getSeconds();
       var prepand = (hour >= 12)? " PM ":" AM ";
-      var greet = (hour >= 12 && hour < 18)? "Good day" : "Good morning";
-      var greet = (hour >= 18 )? "Good evening" : "Good day";
-      var greetPartTwo = (hour >= 12 )? "What is your plan for the day?" : "What is your plan for the evening";
+      
       hour = (hour >= 12)? hour - 12: hour;
       if (hour===0 && prepand===' PM ') 
       { 
@@ -42,6 +32,7 @@ function setGreetings(){
             prepand=' AM';
         } 
       }
+      setTimeout("setTime()", 1000);
       if(minute < 10)
       {
           minute = "0" + minute
@@ -50,10 +41,22 @@ function setGreetings(){
       {
           second = "0" + second
       }
-      document.getElementById("time").innerHTML = hour +":"+ minute +":" + second + prepand;
+      document.getElementById("time").innerHTML = hour +":"+ minute +":" + second + prepand; 
+    }
+
+    function setGreetings(){
+      var greet 
+      var greetPartTwo = (hour >= 12 )?  "What is your plan for the evening?" : "What is your plan for the day?";
+      if(hour < 12){
+        greet = "Good morning";
+    } else if(hour >= 12 && hour < 18){
+        greet = "Good day";
+    } else {
+        greet = "Good evening";
+    }
+
       document.getElementById("greeting").innerHTML = greet;
       document.getElementById("greeting-part-two").innerHTML = greetPartTwo;
-      
     }
 
     function changeImage(){
@@ -65,7 +68,6 @@ function setGreetings(){
 
         var el = document.body;
         
-
         if(hour < 12){
             el.style.backgroundImage = images[0];
         } else if(hour >= 12 && hour < 18){
@@ -73,7 +75,6 @@ function setGreetings(){
         } else {
             el.style.backgroundImage = images[2];
         }
-        
 
     }
 
@@ -87,11 +88,11 @@ function setGreetings(){
       document.getElementById("body").style.color = "#e2e4df";
     }
     }
-    //setTime();
-   // display_setTime();
+    
+    setTime();
     setGreetings();
     setTextColor();
     changeImage();
-    //setGreetings();
+   
 
 
